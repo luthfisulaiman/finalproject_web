@@ -55,9 +55,9 @@ $result = get_loan($user_id);
                     echo"<tr>";
                     $i = 0;
                     foreach($row as $key => $value) {
-                        if($i == 1){
+                        if($i == 2){
                         echo "<td><img class='img-thumbnail' src='$value'/></td>";
-                        } elseif($i > 1){
+                        } elseif($i > 2){
                         echo "<td>$value</td>";
                         } else {
 
@@ -69,7 +69,9 @@ $result = get_loan($user_id);
                     echo'<td>
                     <form action="function.php" method="post">
                     <input type="hidden" id="kembalikan-buku"
-                    name="buku-id" value="'.$row[0].'">
+                    name="buku-id" value="'.$row[1].'">
+                    <input type="hidden" id="kembalikan-loan"
+                    name="loan-id" value="'.$row[0].'">
                     <input type="hidden" id="return-book" name="perintah" value="return">
                     <button class="btn btn-primary"> Kembalikan </button> </td>';
                 }

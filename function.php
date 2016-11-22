@@ -1,6 +1,5 @@
 <?php
-
-
+session_start();
 $pesan ="";
 
 function connectDB()
@@ -39,7 +38,7 @@ function look_book(){
 
 function get_loan($user_id){
     $conn = connectDB();
-    $sql = "SELECT book.book_id,book.img_path,book.title,book.author,book.publisher,book.quantity FROM BOOK INNER JOIN LOAN ON BOOK.book_id = LOAN.book_id AND LOAN.user_id = $user_id";
+    $sql = "SELECT LOAN.loan_id , book.book_id,book.img_path,book.title,book.author,book.publisher,book.quantity FROM BOOK INNER JOIN LOAN ON BOOK.book_id = LOAN.book_id AND LOAN.user_id = $user_id";
 
     if (!$result = mysqli_query($conn, $sql))
         {
@@ -50,16 +49,16 @@ function get_loan($user_id){
     return $result;
 }
 
-function return_buku($id){
+function return_buku($id_buku , $id_loan){
      $conn = connectDB();
-     $sql = "DELETE FROM LOAN WHERE loan_id = $id";
+     $sql = "DELETE FROM LOAN WHERE loan_id = $id_loan";
      $pesan = "Buku berhasil dikembalikan";
     if (!$result = mysqli_query($conn, $sql))
         {
         die("Error: $sql");
         }
 
-    update_stok($id,'tambah');
+    update_stok($id_buku,'tambah');
     mysqli_close($conn);
     return $pesan;
 
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
      {
      if ($_POST['perintah'] === 'return')
          {
-         return_buku($_POST['buku-id']);
+         return_buku($_POST['buku-id'],$_POST['loan-id']);
          }
      }
 ?>
