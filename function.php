@@ -73,7 +73,6 @@ function get_stok($id){
         }
      $row = mysqli_fetch_row($result);
      $row = $row[0];
-     echo $row;
      mysqli_close($conn);
 
      return $row;

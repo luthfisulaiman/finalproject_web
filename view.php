@@ -64,7 +64,9 @@ $result = look_book();
 
                     }
 
+                    if(get_stok($row[0]) > 0) {
                     echo "<td><button class='btn btn-primary'> Pinjam </button> </td>";
+                    }
                 }
             ?>
             </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'function.php';
-$user_id = 8;
+$user_id = 10;
 $result = get_loan($user_id);
 
 ?>
