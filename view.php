@@ -24,7 +24,7 @@ $result = look_book();
         <a class="navbar-brand" href="#">Perpustakaan Mini</a>
         <ul class="nav navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="view.php">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="view.php">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="daftar_pinjam.php">Daftar Pinjam</a>
@@ -53,12 +53,15 @@ $result = look_book();
                     echo"<tr>";
                     $i = 0;
                     foreach($row as $key => $value) {
-                        if($i < 1){
+                        if($i == 1){
                         echo "<td><img class='img-thumbnail' src='$value'/></td>";
-                        } else {
+                        } elseif($i > 1){
                         echo "<td>$value</td>";
+                        } else {
+
                         }
                         $i++;
+
                     }
 
                     echo "<td><button class='btn btn-primary'> Pinjam </button> </td>";

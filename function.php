@@ -26,7 +26,7 @@ function connectDB()
 
 function look_book(){
     $conn = connectDB();
-    $sql = "SELECT img_path,title,author,publisher,quantity FROM BOOK";
+    $sql = "SELECT book_id,img_path,title,author,publisher,quantity FROM BOOK";
 
     if (!$result = mysqli_query($conn, $sql))
         {
@@ -39,7 +39,7 @@ function look_book(){
 
 function get_loan($user_id){
     $conn = connectDB();
-    $sql = "SELECT book.img_path,title,author,publisher,quantity FROM BOOK INNER JOIN LOAN ON BOOK.book_id = LOAN.book_id AND LOAN.user_id = $user_id";
+    $sql = "SELECT book.book_id,book.img_path,book.title,book.author,book.publisher,book.quantity FROM BOOK INNER JOIN LOAN ON BOOK.book_id = LOAN.book_id AND LOAN.user_id = $user_id";
 
     if (!$result = mysqli_query($conn, $sql))
         {
@@ -59,9 +59,42 @@ function return_buku($id){
         die("Error: $sql");
         }
 
+    update_stok($id,'tambah');
     mysqli_close($conn);
     return $pesan;
 
+}
+
+function get_stok($id){
+     $conn = connectDB();
+     $sql = "SELECT quantity FROM BOOK WHERE book_id = $id";
+     if (!$result = mysqli_query($conn, $sql))
+        {
+        die("Error: $sql");
+        }
+     $row = mysqli_fetch_row($result);
+     $row = $row[0];
+     echo $row;
+     mysqli_close($conn);
+
+     return $row;
+}
+
+function update_stok($id,$perintah){
+     $conn = connectDB();
+     if($perintah == 'tambah'){
+        $stok = get_stok($id) + 1;
+     } else {
+        $stok = get_stok($id) - 1;
+     }
+
+     $sql = "UPDATE BOOK SET quantity = $stok WHERE book_id = $id";
+        if (!$result = mysqli_query($conn, $sql))
+            {
+            die("Error: $sql");
+            }
+
+        mysqli_close($conn);
 }
 
 function add_review(){
@@ -84,12 +117,11 @@ function add_review(){
 }
 
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST')
-//     {
-//     if ($_POST['command'] === 'return')
-//         {
-//         insertPaket();
-//         }
-
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+     {
+     if ($_POST['perintah'] === 'return')
+         {
+         return_buku($_POST['buku-id']);
+         }
+     }
 ?>

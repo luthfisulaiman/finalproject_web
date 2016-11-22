@@ -29,7 +29,7 @@ $result = get_loan($user_id);
             <a class="nav-link" href="view.php">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -55,15 +55,23 @@ $result = get_loan($user_id);
                     echo"<tr>";
                     $i = 0;
                     foreach($row as $key => $value) {
-                        if($i < 1){
+                        if($i == 1){
                         echo "<td><img class='img-thumbnail' src='$value'/></td>";
-                        } else {
+                        } elseif($i > 1){
                         echo "<td>$value</td>";
+                        } else {
+
                         }
                         $i++;
+
                     }
 
-                    echo "<td><button class='btn btn-primary'> Kembalikan </button> </td>";
+                    echo'<td>
+                    <form action="function.php" method="post">
+                    <input type="hidden" id="kembalikan-buku"
+                    name="buku-id" value="'.$row[0].'">
+                    <input type="hidden" id="return-book" name="perintah" value="return">
+                    <button class="btn btn-primary"> Kembalikan </button> </td>';
                 }
             ?>
             </div>
