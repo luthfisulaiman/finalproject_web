@@ -1,5 +1,4 @@
 <?php
-session_start();
 $pesan ="";
 
 function connectDB()
@@ -117,7 +116,7 @@ function add_review(){
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
      {
-     if ($_POST['perintah'] === 'return')
+     if (!empty($_POST['perintah']) && $_POST['perintah'] === 'return')
          {
          return_buku($_POST['buku-id'],$_POST['loan-id']);
          }
