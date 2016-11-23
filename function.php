@@ -113,6 +113,12 @@ function add_review(){
 
 }
 
+function logout()
+{
+	session_destroy();
+	echo "<script>window.open('login.php','_self')</script>";
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
      {
@@ -121,4 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
          return_buku($_POST['buku-id'],$_POST['loan-id']);
          }
      }
+	 
+
 ?>
