@@ -1,44 +1,22 @@
 <?php
 session_start();
-include 'function.php';
-$user_id = 10;
+$_SESSION['pages'] = 'dp';
+$user_id = $_SESSION['user_id'];
+
+if(!isset($_SESSION['login'])){
+    header('location: ./login.php');
+}
+
+require_once "./_app/function/function.php";
+require_once "./_layout/header.php";
+
 $result = get_loan($user_id);
-
 ?>
-
-<!DOCTYPE html>
-
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="Perpustakaan Mini">
-    <meta name="description" content="Tugas Akhir Perancangan dan Pemograman Web">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpusatakaan Mini</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-</head>
-<body>
-    <nav class="navbar navbar-light bg-faded">
-      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-        &#9776;
-      </button>
-      <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <a class="navbar-brand" href="#">Perpustakaan Mini</a>
-        <ul class="nav navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="view.php">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
     <div class="container">
         <div class="row">
             <div class="table-responsive">
-             <table class='table'>
+             <table class='table table-hover'>
                <thead>
                   <tr>
                      <th>Cover</th>
@@ -65,9 +43,8 @@ $result = get_loan($user_id);
                         $i++;
 
                     }
-
                     echo'<td>
-                    <form action="function.php" method="post">
+                    <form action="./_app/function/function.php" method="post">
                     <input type="hidden" id="kembalikan-buku"
                     name="buku-id" value="'.$row[1].'">
                     <input type="hidden" id="kembalikan-loan"
@@ -82,7 +59,6 @@ $result = get_loan($user_id);
 
 
 
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-   <script src="   https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
-</body>
-</html>
+<?php require_once './_layout/footer.php'; ?>
+
+<?php  ?>

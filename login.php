@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include 'function.php';
+    require_once "./_app/function/function.php";
 ?>
 <!DOCTYPE html>
 <!-- Reference: http://www.c-sharpcorner.com/uploadfile/9582c9/script-for-login-logout-and-view-using-php-mysql-and-boots/ -->
@@ -10,9 +10,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Login</title>  
 	<style>  
-		.login-panel {  
-			margin-top: 50%;  
-	  
+		.login-panel {
+            margin-top: 50%;
+        }
 	</style>  
 </head>  
 <body>
@@ -74,6 +74,7 @@ if(isset($_POST['login']))
 		$row = mysqli_fetch_assoc($result);
         $_SESSION['role']=$row['role'];
         $_SESSION['user_id']=$row['user_id'];
+        $_SESSION['login'] = true;
 
 		echo "<script>window.open('view.php','_self')</script>";
 	}

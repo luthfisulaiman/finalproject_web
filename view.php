@@ -1,42 +1,25 @@
 <?php
 session_start();
-include 'function.php';
+$_SESSION['pages'] = 'home';
+
+require_once "./_app/function/function.php";
+require_once "./_layout/header.php";
+    if(isset($_POST['review-buku'])) {
+        $_SESSION['review'] = $_POST['review-buku'];
+        if(isset($_SESSION['review'])) {
+            $_SESSION['buku-id'] = $_SESSION['review'];
+            header('location: review.php');
+        }
+
+    }
+
 $result = look_book();
 ?>
-
-<!DOCTYPE html>
-
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="Perpustakaan Mini">
-    <meta name="description" content="Tugas Akhir Perancangan dan Pemograman Web">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpusatakaan Mini</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-</head>
-<body>
-    <nav class="navbar navbar-light bg-faded">
-      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-        &#9776;
-      </button>
-      <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <a class="navbar-brand" href="#">Perpustakaan Mini</a>
-        <ul class="nav navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link active" href="view.php">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="daftar_pinjam.php">Daftar Pinjam</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
     <div class="container">
         <div class="row">
             <div class="table-responsive">
-             <table class='table'>
+             <table class='table table-hover'>
                <thead>
                   <tr>
                      <th>Cover</th>
@@ -54,7 +37,15 @@ $result = look_book();
                     $i = 0;
                     foreach($row as $key => $value) {
                         if($i == 1){
-                        echo "<td><img class='img-thumbnail' src='$value'/></td>";
+                            echo '
+                             <form action="view.php" method="post">
+                             <input type="hidden" id="review-buku" name="review-buku" value="'.$row[0].'">
+                             <input id="buku-'.$row[0].'" type="submit" class="hidden">
+                             
+                             </form>
+                            ';
+                            echo '<button class="hidden" id="bukubuku-'.$row[0].'" data-toggle="modal" data-target="#myModal"></button>';
+                        echo "<td class='img-review' val='".$row[0]."'><img class='img-thumbnail' src='$value'/></td>";
                         } elseif($i > 1){
                         echo "<td>$value</td>";
                         } else {
@@ -75,7 +66,7 @@ $result = look_book();
 
 
 
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-   <script src="   https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
-</body>
-</html>
+<?php require_once './_layout/footer.php'; ?>
+
+
+<?php session_destroy($_SESSION['review'])?>
