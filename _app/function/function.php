@@ -36,7 +36,7 @@ function insertBook() {
         if($result = mysqli_query($conn, $sql)) {
             echo "New record created successfully <br/>";
             header("Location: view.php");
-            } else {
+        } else {
             die("Error: $sql");
         }
         mysqli_close($conn);
