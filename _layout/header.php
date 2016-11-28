@@ -2,6 +2,7 @@
 session_start();
 $pages = $_SESSION["pages"];
 $active = 'active';
+
 ?>
 <!DOCTYPE html>
 
@@ -26,7 +27,6 @@ $active = 'active';
           <li class="nav-item  <?php if ($pages == 'home') echo $active?>">
             <a class="nav-link <?php if ($pages == 'home') echo $active?>" href="view.php">Home</a>
           </li>
-
           <li class="nav-item <?php if ($pages == 'dp') echo $active?>">
             <a class="nav-link <?php if ($pages == 'dp') echo $active?>" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
           </li>

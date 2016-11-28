@@ -4,7 +4,7 @@ $_SESSION['pages'] = 'home';
 
 require_once './_app/function/auth.php';
 require_once "./_app/function/function.php";
-require_once "./_layout/header.php";
+
     if(isset($_POST['review-buku'])) {
         $_SESSION['review'] = $_POST['review-buku'];
         if(isset($_SESSION['review'])) {
@@ -17,10 +17,17 @@ require_once "./_layout/header.php";
 $result = look_book();
 ?>
 
+        <?php
+        if($admin){
+            require_once "./_layout/header_admin.php";
+        } else {
+            require_once "./_layout/header.php";
+        }
+        ?>
     <div class="container">
         <?php
         if($admin){
-        include_once './admin.php';
+            include_once './admin.php';
         }
         ?>
         <div class="row">
@@ -60,8 +67,9 @@ $result = look_book();
                         $i++;
 
                     }
+                    if($admin || get_stok($row[0]) < 1){
 
-                    if(get_stok($row[0]) > 0) {
+                    } elseif(get_stok($row[0]) > 0) {
                     echo "<td><button class='btn btn-primary'> Pinjam </button> </td>";
                     }
                 }
