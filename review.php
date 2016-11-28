@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+$_SESSION['pages'] = 'review';
+
+require_once './_app/function/auth.php';
 require_once './_app/function/function.php';
 require_once './_layout/header.php';
 

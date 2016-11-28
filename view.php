@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['pages'] = 'home';
 
+require_once './_app/function/auth.php';
 require_once "./_app/function/function.php";
 require_once "./_layout/header.php";
     if(isset($_POST['review-buku'])) {
@@ -17,6 +18,11 @@ $result = look_book();
 ?>
 
     <div class="container">
+        <?php
+        if($admin){
+        include_once './admin.php';
+        }
+        ?>
         <div class="row">
             <div class="table-responsive">
              <table class='table table-hover'>

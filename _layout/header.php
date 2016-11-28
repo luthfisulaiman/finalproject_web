@@ -30,6 +30,12 @@ $active = 'active';
           <li class="nav-item <?php if ($pages == 'dp') echo $active?>">
             <a class="nav-link <?php if ($pages == 'dp') echo $active?>" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item">
+            <form action="../_app/function/function.php" method="post">
+              <input type="hidden" id="logout" name="perintah" value="logout"/>
+              <button class="btn btn-danger">Logout</button>
+            </form>
+          </li>
         </ul>
       </div>
     </nav>

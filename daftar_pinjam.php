@@ -3,9 +3,7 @@ session_start();
 $_SESSION['pages'] = 'dp';
 $user_id = $_SESSION['user_id'];
 
-if(!isset($_SESSION['login'])){
-    header('location: ./login.php');
-}
+require_once './_app/function/auth.php';
 
 require_once "./_app/function/function.php";
 require_once "./_layout/header.php";
