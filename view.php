@@ -58,7 +58,7 @@ $result = look_book();
                              </form>
                             ';
                             echo '<button class="hidden" id="bukubuku-'.$row[0].'" data-toggle="modal" data-target="#myModal"></button>';
-                        echo "<td class='img-review' val='".$row[0]."'><img class='img-thumbnail' src='$value'/></td>";
+                        echo "<td class='img-review' val='".$row[0]."'><img href='#' class='img-thumbnail' src='$value'/></td>";
                         } elseif($i > 1){
                         echo "<td>$value</td>";
                         } else {

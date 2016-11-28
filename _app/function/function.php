@@ -2,8 +2,7 @@
 session_start();
 $pesan ="";
 
-function connectDB()
-    {
+function connectDB(){
     $servername = "localhost";
     $username = "user";
     $password = "";
@@ -21,6 +20,26 @@ function connectDB()
         }
 
     return $conn;
+    }
+
+function insertBook() {
+        $conn = connectDB();
+        
+        $cover = $_POST['cover'];
+        $judul = $_POST['judul'];
+        $penulis = $_POST['penulis'];
+        $penerbit = $_POST['penerbit'];
+        $deskripsi = $_POST['deskripsi'];
+        $stok = $_POST['stok'];
+        $sql = "INSERT into book (img_path, title, author, publisher, description, quantitiy) values('$cover','$judul','$penulis','$penerbit','$deskripsi','$stok')";
+        
+        if($result = mysqli_query($conn, $sql)) {
+            echo "New record created successfully <br/>";
+            header("Location: view.php");
+            } else {
+            die("Error: $sql");
+        }
+        mysqli_close($conn);
     }
 
 function look_book(){

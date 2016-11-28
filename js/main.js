@@ -18,7 +18,7 @@ $(document).ready(function($) {
 
 
         e.preventDefault();
-        $.post('../_app/function/function.php', {perintah: 'add-review',book_id: book_id_user, user_id: user_id_user,tanggal: date,comment: comment_user}).done(function(){
+        $.post('./_app/function/function.php', {perintah: 'add-review',book_id: book_id_user, user_id: user_id_user,tanggal: date,comment: comment_user}).done(function(){
             window.location.reload();
             return true;
 

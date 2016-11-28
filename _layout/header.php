@@ -14,7 +14,7 @@ $active = 'active';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpusatakaan Mini</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/app.css" />
+    <link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
     <nav class="navbar navbar-light bg-faded">
@@ -31,7 +31,7 @@ $active = 'active';
             <a class="nav-link <?php if ($pages == 'dp') echo $active?>" href="daftar_pinjam.php">Daftar Pinjam<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <form action="../_app/function/function.php" method="post">
+            <form action="./_app/function/function.php" method="post">
               <input type="hidden" id="logout" name="perintah" value="logout"/>
               <button class="btn btn-danger">Logout</button>
             </form>
