@@ -11,7 +11,7 @@
         		<h4 class="modal-title" id="myModalLabel"> Tambah Buku </h4>
       		</div>
       		<div class="modal-body">
-    			<form action="function.php" method="post">
+    			<form action="_app/function/function.php" method="post">
                     <div class="form-group">
                         <label for="cover">Cover Buku</label>
                         <input type="text" class="form-control" id="insert-cover" name="cover" placeholder="Image">
@@ -36,12 +36,12 @@
                     	<label for="stok">Stok</label>
                         <input type="text" class="form-control" id="insert-stok" name="stok" placeholder="1337">
                     </div>
-                    <input type="hidden" id="insert-command" name="command" value="insert">
+                    <input type="hidden" id="insert-command" name="perintah" value="insert">
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                	</form>
-      		</div>
-      		<div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary">Submit</button>
       		</div>
     	</div>
   	</div>
