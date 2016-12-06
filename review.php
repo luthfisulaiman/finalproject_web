@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
 
 $_SESSION['pages'] = 'review';
 
@@ -54,7 +57,7 @@ require_once './_layout/header.php';
                             <div class="panel panel-white post panel-shadow">
                                 <div class="post-heading">
                                     <div class="pull-left meta">
-                                        <div class="title h5">                                       
+                                        <div class="title h5">
                                             <a href="#"><b>' .$username.'</b></a>
                                             made a review.
                                         </div>
@@ -97,6 +100,3 @@ require_once './_layout/header.php';
 </div>
 
 <?php require_once './_layout/footer.php'; ?>
-
-
-

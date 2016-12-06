@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION))
+    {
+			session_start();
+    }
 $pesan ="";
 
 function connectDB(){
@@ -24,7 +27,7 @@ function connectDB(){
 
 function insertBook() {
         $conn = connectDB();
-        
+
         $cover = $_POST['cover'];
         $judul = $_POST['judul'];
         $penulis = $_POST['penulis'];
@@ -32,10 +35,10 @@ function insertBook() {
         $deskripsi = $_POST['deskripsi'];
         $stok = $_POST['stok'];
         $sql = "INSERT into book (img_path, title, author, publisher, description, quantity) values('$cover','$judul','$penulis','$penerbit','$deskripsi','$stok')";
-        
+
         if($result = mysqli_query($conn, $sql)) {
             echo "New record created successfully <br/>";
-            header("Location: view.php");
+            header("Location: ../../view.php");
         } else {
             die("Error: $sql");
         }
@@ -182,7 +185,8 @@ function getBook($id){
 function logout()
 {
     session_unset();
-	session_destroy();
+    session_destroy();
+    $_SESSION = array();
 	echo "<script>window.open('../../login.php','_self')</script>";
 }
 
@@ -202,9 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
              logout();
          }
      elseif  (!empty($_POST['perintah']) && $_POST['perintah'] === 'insert')
-         { 
+         {
              insertBook();
-
          }
 
      }

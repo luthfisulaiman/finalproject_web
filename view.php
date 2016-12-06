@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
 $_SESSION['pages'] = 'home';
 
 require_once './_app/function/auth.php';
@@ -17,13 +20,13 @@ require_once "./_app/function/function.php";
 $result = look_book();
 ?>
 
-        <?php
-        if($admin){
-            require_once "./_layout/header_admin.php";
-        } else {
-            require_once "./_layout/header.php";
-        }
-        ?>
+<?php
+if($admin){
+  require_once "./_layout/header_admin.php";
+} else {
+  require_once "./_layout/header.php";
+}
+?>
     <div class="container">
         <?php
         if($admin){
@@ -54,7 +57,7 @@ $result = look_book();
                              <form action="view.php" method="post">
                              <input type="hidden" id="review-buku" name="review-buku" value="'.$row[0].'">
                              <input id="buku-'.$row[0].'" type="submit" class="hidden">
-                             
+
                              </form>
                             ';
                             echo '<button class="hidden" id="bukubuku-'.$row[0].'" data-toggle="modal" data-target="#myModal"></button>';
@@ -78,9 +81,4 @@ $result = look_book();
         </div>
     </div>
 
-
-
 <?php require_once './_layout/footer.php'; ?>
-
-
-<?php session_destroy($_SESSION['review'])?>
