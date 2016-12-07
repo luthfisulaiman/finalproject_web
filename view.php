@@ -70,7 +70,7 @@ if($admin){
                             echo '<button class="hidden" id="bukubuku-'.$row[0].'" data-toggle="modal" data-target="#myModal"></button>';
                         echo "<td class='img-review' val='".$row[0]."'><img href='#' class='img-thumbnail' src='$value'/></td>";
                         } elseif($i > 1){
-                        echo "<td>$value</td>";
+                        echo "<td><p>$value</p></td>";
                         } else {
 
                         }
