@@ -33,13 +33,13 @@ $active = 'active';
           <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
         </div>
         <div class="carousel-item active">
-          <img src="./src/img/1.jpg" width=100% alt="First slide">
+          <img src="./src/img/1.jpg" width=100% height=100% alt="First slide">
         </div>
         <div class="carousel-item">
-          <img src="./src/img/2.jpg" width=100% alt="Second slide">
+          <img src="./src/img/2.jpg" width=100% height=100% alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img src="./src/img/3.jpg" width=100% alt="Third slide">
+          <img src="./src/img/3.jpg" width=100% height=100% alt="Third slide">
         </div>
       </div>
       <a class="left carousel-control" href="#carousel-example-with-caption" role="button" data-slide="prev">
