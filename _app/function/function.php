@@ -214,8 +214,7 @@ function logout()
 {
     session_unset();
     session_destroy();
-    $_SESSION = array();
-	echo "<script>window.open('../../login.php','_self')</script>";
+  	echo "<script>window.open('../../login.php','_self')</script>";
 }
 
 

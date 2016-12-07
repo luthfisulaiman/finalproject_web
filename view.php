@@ -1,6 +1,6 @@
 <?php
 require_once "./_app/function/function.php";
-if(isset($_SESSION))
+if(!empty($_SESSION['role']))
   {
     $_SESSION['pages'] = 'home';
     $user_id = $_SESSION['user_id'];
@@ -14,6 +14,7 @@ if(isset($_SESSION))
     }
   }
 else {
+  if(!isset($_SESSION))
   session_start();
   echo "<script>console.log('belom login')</script>";
 }

@@ -2,8 +2,8 @@
 if(!isset($_SESSION))
     {
 			session_start();
+      $pages = $_SESSION["pages"];
     }
-$pages = $_SESSION["pages"];
 $active = 'active';
 
 ?>
