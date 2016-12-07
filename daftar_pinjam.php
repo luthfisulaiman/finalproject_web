@@ -31,7 +31,7 @@ $result = get_loan($user_id);
                     $i = 0;
                     foreach($row as $key => $value) {
                         if($i == 2){
-                        echo "<td><img class='img-thumbnail' src='$value'/></td>";
+                        echo "<td><img class='img-thumbnail' style='max-height:50%;' src='$value'/></td>";
                         } elseif($i > 2){
                         echo "<td>$value</td>";
                         } else {

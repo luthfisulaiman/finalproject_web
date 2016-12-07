@@ -31,8 +31,8 @@ $active = 'active';
         <div class="carousel-caption">
                 <div class="full-width text-center">
                     <div class="jumbotron" style="background: none;">
-                      <p style="font-size:100px">Online Library</p> 
-                      <p style="font-size:30px">Why borrow books physically when you can do it online!</p> 
+                      <p style="font-size:100px">Online Library</p>
+                      <p style="font-size:30px">Why borrow books physically when you can do it online!</p>
                     </div>
                 </div>
         </div>
