@@ -58,6 +58,24 @@ function look_book(){
     return $result;
 }
 
+function borrow_book($id_buku, $user_id) {
+  $conn = connectDB();
+  $sql = "INSERT INTO LOAN (book_id, user_id) VALUES ('$id_buku', $user_id)";
+  echo "console.log('Masuk awal')";
+  if (!$result = mysqli_query($conn, $sql))
+      {
+      die("Error: $sql");
+      }
+
+  echo "console.log('Masuk tengah')";
+  update_stok($id_buku, "kurang");
+  mysqli_close($conn);
+  $pesan = "Buku berhasil dipinjam";
+  $_SESSION['pesan'] = $pesan;
+  header('location: ../../view.php');
+  echo "console.log('Masuk akhir')";
+}
+
 function get_loan($user_id){
     $conn = connectDB();
     $sql = "SELECT LOAN.loan_id , book.book_id,book.img_path,book.title,book.author,book.publisher,book.quantity FROM BOOK INNER JOIN LOAN ON BOOK.book_id = LOAN.book_id AND LOAN.user_id = $user_id";
@@ -85,8 +103,6 @@ function return_buku($id_buku , $id_loan){
 
     $_SESSION['pesan'] = $pesan;
     header('location: ../../daftar_pinjam.php');
-
-
 }
 
 function get_stok($id){
@@ -203,13 +219,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
          }
      elseif  (!empty($_POST['perintah']) && $_POST['perintah'] === 'logout')
          {
+            echo "<script>console.log('Masuk if')</script>";
              logout();
          }
      elseif  (!empty($_POST['perintah']) && $_POST['perintah'] === 'insert')
          {
              insertBook();
          }
-
+     elseif  (!empty($_POST['perintah']) && $_POST['perintah'] === 'borrow')
+         {
+            echo "<script>console.log('Masuk if')</script>";
+             borrow_book($_POST['buku-id'], $_POST['user-id']);
+         }
+      else
+        {
+          echo "<script>console.log(".$_POST['perintah']." Tidak ada)</script>";
+        }
      }
 
 ?>

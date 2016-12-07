@@ -73,7 +73,17 @@ if($admin){
                     if($admin || get_stok($row[0]) < 1){
 
                     } elseif(get_stok($row[0]) > 0) {
-                    echo "<td><button class='btn btn-primary'> Pinjam </button> </td>";
+                      echo "<script>console.log('$row[0]')</script>";
+                      echo "<script>console.log('user id = ".$_SESSION['user_id']."')</script>";
+
+                      echo '<td>
+                              <form action="./_app/function/function.php" method="post">
+                                <input type="hidden" id="pinjam-buku" name="buku-id" value="'.$row[0].'">
+                                <input type="hidden" id="id-peminjam" name="user-id" value="'.$_SESSION['user_id'].'">
+                                <input type="hidden" id="borrow-book" name="perintah" value="borrow">
+                                <button class="btn btn-primary"> Pinjam </button>
+                              </form>
+                            </td>';
                     }
                 }
             ?>

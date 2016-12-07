@@ -41,7 +41,7 @@ $result = get_loan($user_id);
                         $i++;
 
                     }
-                    echo'<td>
+                    echo '<td>
                     <form action="./_app/function/function.php" method="post">
                     <input type="hidden" id="kembalikan-buku"
                     name="buku-id" value="'.$row[1].'">
