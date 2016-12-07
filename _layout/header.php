@@ -29,10 +29,12 @@ $active = 'active';
 
       <div class="carousel-inner">
         <div class="carousel-caption">
-            <div class="jumbotron" style="background:none">
-              <h1>What we do</h1>
-              <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-          </div>
+                <div class="full-width text-center">
+                    <div class="jumbotron" style="background: none;">
+                      <p style="font-size:100px">Online Library</p> 
+                      <p style="font-size:30px">Why borrow books physically when you can do it online!</p> 
+                    </div>
+                </div>
         </div>
         <div class="carousel-item active">
           <img src="./src/img/1.jpg" width=100% height=100% alt="First slide">
@@ -53,7 +55,8 @@ $active = 'active';
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <nav class="navbar navbar-light bg-faded">
+
+    <nav class="navbar navbar-light bg-faded navbar-fixed-top">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
       </button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
