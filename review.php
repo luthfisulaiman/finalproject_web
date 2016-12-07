@@ -8,8 +8,11 @@ $_SESSION['pages'] = 'review';
 
 require_once './_app/function/auth.php';
 require_once './_app/function/function.php';
-require_once './_layout/header.php';
-
+if($admin){
+  require_once "./_layout/header_admin.php";
+} else {
+  require_once "./_layout/header.php";
+}
 ?>
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
