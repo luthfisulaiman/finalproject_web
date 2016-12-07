@@ -27,10 +27,12 @@ $active = 'active';
         <li data-target="#carousel-example-with-caption" data-slide-to="2"></li>
       </ol>
 
-      <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner">
         <div class="carousel-caption">
-          <h1>What we do</h1>
-          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+            <div class="jumbotron" style="background:none">
+              <h1>What we do</h1>
+              <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+          </div>
         </div>
         <div class="carousel-item active">
           <img src="./src/img/1.jpg" width=100% height=100% alt="First slide">
