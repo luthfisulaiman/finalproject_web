@@ -1,20 +1,24 @@
 <?php
-if(!isset($_SESSION));
-else
+require_once "./_app/function/function.php";
+if(isset($_SESSION))
   {
     $_SESSION['pages'] = 'home';
     $user_id = $_SESSION['user_id'];
     $user_loan = get_loan($user_id);
     $loan_book = array();
+    echo "<script>console.log('udah login')</script>";
     while ($loan_row = mysqli_fetch_row($user_loan)) {
       foreach($loan_row as $key => $value) {
         array_push($loan_book, $loan_row[1]);
       }
     }
   }
+else {
+  session_start();
+  echo "<script>console.log('belom login')</script>";
+}
 
     require_once './_app/function/auth.php';
-    require_once "./_app/function/function.php";
 
     if(isset($_POST['review-buku'])) {
         $_SESSION['review'] = $_POST['review-buku'];

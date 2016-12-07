@@ -8,6 +8,7 @@ $_SESSION['pages'] = 'review';
 
 require_once './_app/function/auth.php';
 require_once './_app/function/function.php';
+
 if($admin){
   require_once "./_layout/header_admin.php";
 } else {
