@@ -1,13 +1,25 @@
 <?php
-if(!isset($_SESSION))
-    {
-        session_start();
-    }
-$_SESSION['pages'] = 'home';
-$user_id = $_SESSION['user_id'];
-
-require_once './_app/function/auth.php';
 require_once "./_app/function/function.php";
+if(!empty($_SESSION['role']))
+  {
+    $_SESSION['pages'] = 'home';
+    $user_id = $_SESSION['user_id'];
+    $user_loan = get_loan($user_id);
+    $loan_book = array();
+    echo "<script>console.log('udah login')</script>";
+    while ($loan_row = mysqli_fetch_row($user_loan)) {
+      foreach($loan_row as $key => $value) {
+        array_push($loan_book, $loan_row[1]);
+      }
+    }
+  }
+else {
+  if(!isset($_SESSION))
+  session_start();
+  echo "<script>console.log('belom login')</script>";
+}
+
+    require_once './_app/function/auth.php';
 
     if(isset($_POST['review-buku'])) {
         $_SESSION['review'] = $_POST['review-buku'];
@@ -18,15 +30,16 @@ require_once "./_app/function/function.php";
 
     }
 
-$result = look_book();
-$user_loan = get_loan($user_id);
+    $result = look_book();
 ?>
 
 <?php
 if($admin){
   require_once "./_layout/header_admin.php";
-} else {
+} elseif($user) {
   require_once "./_layout/header.php";
+} else {
+  require_once "./_layout/no_login_header.php";
 }
 ?>
     <div class="container">
@@ -49,12 +62,6 @@ if($admin){
                   </tr>
                </thead>
             <?php
-                $loan_book = array();
-                while ($loan_row = mysqli_fetch_row($user_loan)) {
-                  foreach($loan_row as $key => $value) {
-                    array_push($loan_book, $loan_row[1]);
-                  }
-                }
                 while ($row = mysqli_fetch_row($result)) {
                     echo"<tr>";
                     $i = 0;
@@ -77,7 +84,7 @@ if($admin){
                         $i++;
 
                     }
-                    if($admin){
+                    if($admin || !$user){
 
                     } else {
 
