@@ -8,11 +8,16 @@ $_SESSION['pages'] = 'review';
 
 require_once './_app/function/auth.php';
 require_once './_app/function/function.php';
-require_once './_layout/header.php';
 
 ?>
 <div class="container" xmlns="http://www.w3.org/1999/html">
-
+        <?php
+            if($admin){
+              require_once "./_layout/header_admin.php";
+            } else {
+              require_once "./_layout/header.php";
+            }
+        ?>
         <?php
 
         $result_review = getBook($_SESSION['buku-id']);
@@ -25,7 +30,7 @@ require_once './_layout/header.php';
                 if ($i == 1) {
                     echo "<div class='col-sm-4'><img class='img-thumbnail' src='$value'/></div>";
                 }  elseif($i == 2){
-                    echo "<div class='col-sm-8'><p>$row[5]</p></div>";
+                    echo "<div class='col-sm-8'><p class='text-justify'>$row[5]</p></div>";
                     echo '</div>';
                 }   elseif($i == 3){
                     echo '<div class="row">';
