@@ -4,6 +4,7 @@ if(!isset($_SESSION))
         session_start();
     }
 $_SESSION['pages'] = 'home';
+$user_id = $_SESSION['user_id'];
 
 require_once './_app/function/auth.php';
 require_once "./_app/function/function.php";
@@ -18,6 +19,7 @@ require_once "./_app/function/function.php";
     }
 
 $result = look_book();
+$user_loan = get_loan($user_id);
 ?>
 
 <?php
@@ -47,8 +49,13 @@ if($admin){
                   </tr>
                </thead>
             <?php
+                $loan_book = array();
+                while ($loan_row = mysqli_fetch_row($user_loan)) {
+                  foreach($loan_row as $key => $value) {
+                    array_push($loan_book, $loan_row[1]);
+                  }
+                }
                 while ($row = mysqli_fetch_row($result)) {
-                    # code...
                     echo"<tr>";
                     $i = 0;
                     foreach($row as $key => $value) {
@@ -70,20 +77,33 @@ if($admin){
                         $i++;
 
                     }
-                    if($admin || get_stok($row[0]) < 1){
+                    if($admin){
 
-                    } elseif(get_stok($row[0]) > 0) {
-                      echo "<script>console.log('$row[0]')</script>";
-                      echo "<script>console.log('user id = ".$_SESSION['user_id']."')</script>";
+                    } else {
 
-                      echo '<td>
-                              <form action="./_app/function/function.php" method="post">
-                                <input type="hidden" id="pinjam-buku" name="buku-id" value="'.$row[0].'">
-                                <input type="hidden" id="id-peminjam" name="user-id" value="'.$_SESSION['user_id'].'">
-                                <input type="hidden" id="borrow-book" name="perintah" value="borrow">
-                                <button class="btn btn-primary"> Pinjam </button>
-                              </form>
-                            </td>';
+                      $button_flag = false;
+                      if(($key = array_search($row[0], $loan_book)) !== false) {
+                        $button_flag = true;
+                      }
+                      if ($button_flag) {
+                        echo '<td>
+                        <form action="./_app/function/function.php" method="post">
+                        <input type="hidden" id="kembalikan-buku"
+                        name="buku-id" value="'.$row[0].'">
+                        <input type="hidden" id="kembalikan-loan"
+                        name="loan-id" value="'.get_loan_id($row[0]).'">
+                        <input type="hidden" id="return-book" name="perintah" value="return">
+                        <button class="btn btn-primary"> Kembalikan </button> </td>';
+                      } elseif(get_stok($row[0]) > 0) {
+                        echo '<td>
+                        <form action="./_app/function/function.php" method="post">
+                        <input type="hidden" id="pinjam-buku" name="buku-id" value="'.$row[0].'">
+                        <input type="hidden" id="id-peminjam" name="user-id" value="'.$user_id.'">
+                        <input type="hidden" id="borrow-book" name="perintah" value="borrow">
+                        <button class="btn btn-primary"> Pinjam </button>
+                        </form>
+                        </td>';
+                      }
                     }
                 }
             ?>

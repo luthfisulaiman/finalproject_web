@@ -89,6 +89,20 @@ function get_loan($user_id){
     return $result;
 }
 
+function get_loan_id($book_id){
+  $conn = connectDB();
+  $sql = "SELECT loan_id FROM loan WHERE book_id = $book_id";
+  if (!$result = mysqli_query($conn, $sql))
+      {
+      die("Error: $sql");
+      }
+  $row = mysqli_fetch_row($result);
+  $row = $row[0];
+  mysqli_close($conn);
+
+  return $row;
+}
+
 function return_buku($id_buku , $id_loan){
      $conn = connectDB();
      $sql = "DELETE FROM LOAN WHERE loan_id = $id_loan";
@@ -102,7 +116,7 @@ function return_buku($id_buku , $id_loan){
     mysqli_close($conn);
 
     $_SESSION['pesan'] = $pesan;
-    header('location: ../../daftar_pinjam.php');
+    header('location: ../../view.php');
 }
 
 function get_stok($id){
@@ -182,8 +196,6 @@ function add_review($book_id, $user_id ,$date,$content){
         }
 
     mysqli_close($conn);
-
-
 }
 
 function getBook($id){
@@ -231,10 +243,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             echo "<script>console.log('Masuk if')</script>";
              borrow_book($_POST['buku-id'], $_POST['user-id']);
          }
-      else
-        {
-          echo "<script>console.log(".$_POST['perintah']." Tidak ada)</script>";
-        }
      }
 
 ?>

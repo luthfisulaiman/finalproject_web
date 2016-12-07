@@ -27,7 +27,6 @@ $result = get_loan($user_id);
                </thead>
             <?php
                 while ($row = mysqli_fetch_row($result)) {
-                    # code...
                     echo"<tr>";
                     $i = 0;
                     foreach($row as $key => $value) {
